@@ -3,21 +3,21 @@
 import React from 'react';
 
 export const Logo = ({ className = '', isFooter = false, showTagline = false }: { className?: string; isFooter?: boolean; showTagline?: boolean }) => {
-  const textColor = isFooter ? 'text-white' : 'text-forest';
+  const textColor = isFooter ? 'text-white' : 'text-white';
   
   return (
     <div className={`flex flex-col items-start ${className}`}>
       {/* Main Logo - EV8LVE */}
       <div className="flex items-baseline">
-        <span className={`text-2xl md:text-3xl font-display font-bold ${textColor}`}>EV</span>
-        <span className="text-2xl md:text-3xl font-display font-bold text-[#9333EA] leading-none">8</span>
-        <span className={`text-2xl md:text-3xl font-display font-bold ${textColor}`}>LVE</span>
+        <span className={`text-4xl md:text-5xl lg:text-6xl font-display font-bold ${textColor} tracking-tight`}>EV</span>
+        <span className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-purple leading-none tracking-tight">8</span>
+        <span className={`text-4xl md:text-5xl lg:text-6xl font-display font-bold ${textColor} tracking-tight`}>LVE</span>
       </div>
       
       {/* STUDIO - aligned with LVE by using margin-left to match EV8 width */}
       <div className="flex items-baseline">
-        <span className="inline-block w-[2.5rem] md:w-[3rem]"></span>
-        <span className={`text-[10px] md:text-xs font-display font-semibold ${textColor} tracking-wider uppercase`}>
+        <span className="inline-block w-[3.5rem] md:w-[4.5rem] lg:w-[5.5rem]"></span>
+        <span className={`text-xs md:text-sm lg:text-base font-display font-semibold ${textColor} tracking-wider uppercase`}>
           STUDIO
         </span>
       </div>

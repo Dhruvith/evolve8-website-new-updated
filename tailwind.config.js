@@ -14,6 +14,7 @@ module.exports = {
         purple: '#9333EA', // Primary purple (logo accent)
         violet: '#7C3AED', // Violet accent
         lightPurple: '#A855F7', // Light purple for highlights
+        orange: '#FF6B35', // Orange for SCALE text
         white: '#FFFFFF',
         gray: '#9CA3AF', // Light gray for secondary text
         darkGray: '#4B5563', // Dark gray

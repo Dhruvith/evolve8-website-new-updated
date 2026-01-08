@@ -45,8 +45,11 @@ export const Hero = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-4"
             >
-              <span className="text-lg md:text-xl font-display font-semibold text-purple uppercase tracking-wider">
-                Build. Evolve. Scale.
+              <span className="text-lg md:text-xl font-display font-semibold uppercase tracking-wider">
+                <span className="text-white">BUILD</span>
+                <span className="text-purple">. EVOLVE. </span>
+                <span className="text-orange">SCALE</span>
+                <span className="text-purple">.</span>
               </span>
             </motion.div>
             

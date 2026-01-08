@@ -85,17 +85,17 @@ export const OurApproach = () => {
                       <div className="p-4 rounded-2xl bg-purple/20 relative z-10">
                         <IconComponent className="w-8 h-8 text-purple" />
                       </div>
-                    <h3 className="text-lg font-display font-bold text-white">
-                      {step.title}
-                    </h3>
-                    <ul className="space-y-2 text-sm text-gray">
-                      {step.description.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
+                      <h3 className="text-lg font-display font-bold text-white">
+                        {step.title}
+                      </h3>
+                      <ul className="space-y-2 text-sm text-gray">
+                        {step.description.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
               );
             })}
           </div>
@@ -104,4 +104,3 @@ export const OurApproach = () => {
     </section>
   );
 };
-
