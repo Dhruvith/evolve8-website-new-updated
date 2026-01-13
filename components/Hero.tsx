@@ -12,10 +12,7 @@ export const Hero = () => {
   };
 
   const handleConsulting = () => {
-    const element = document.querySelector('#contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    window.location.href = '/consulting';
   };
 
   return (
