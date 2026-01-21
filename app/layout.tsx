@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import './globals.css';
+import { ClientProviders } from '@/components/ClientProviders';
 
 export const metadata: Metadata = {
   title: 'Evolve8 Studio - Crafting Brands. Engineering Digital Experiences.',
@@ -32,7 +33,9 @@ export default function RootLayout({
             gtag('config', 'G-MPPFBBDQFZ');
           `}
         </Script>
-        {children}
+        <ClientProviders>
+          {children}
+        </ClientProviders>
       </body>
     </html>
   );
