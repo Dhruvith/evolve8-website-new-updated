@@ -3,7 +3,7 @@
 import React from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Elev8AlarmLogo } from '@/components/Elev8AlarmLogo';
 import { Button } from '@/components/Button';
 import Image from 'next/image';
@@ -23,14 +23,11 @@ import {
   Building2,
   Rocket,
   DollarSign,
-  Sparkles,
-  Play
+  Sparkles
 } from 'lucide-react';
 
 export default function Elev8StartupsPage() {
   const shouldReduceMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
 
   // Enhanced animation variants with more sophisticated easing
   const fadeInUp = {
@@ -53,9 +50,10 @@ export default function Elev8StartupsPage() {
 
   const scaleIn = {
     initial: { opacity: 0, scale: shouldReduceMotion ? 1 : 0.8 },
-    animate: { opacity: 1, scale: 1 },
-    transition: { duration: shouldReduceMotion ? 0 : 0.6, ease: [0.16, 1, 0.3, 1] }
+    animate: { opacity: 1, scale: 1 }
   };
+  
+  const scaleInTransition = { duration: shouldReduceMotion ? 0 : 0.6, ease: [0.16, 1, 0.3, 1] };
 
   const staggerContainer = {
     initial: { opacity: 0 },
@@ -455,10 +453,7 @@ export default function Elev8StartupsPage() {
               transition={fadeInLeft.transition}
               className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-purple/20 group"
             >
-              <motion.div
-                style={{ y }}
-                className="absolute inset-0"
-              >
+              <div className="absolute inset-0">
                 <Image
                   src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
                   alt="Target and objectives"
@@ -466,7 +461,7 @@ export default function Elev8StartupsPage() {
                   className="object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
                   loading="lazy"
                 />
-              </motion.div>
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-darkPurple via-purple/20 to-transparent"></div>
             </motion.div>
             
@@ -685,7 +680,7 @@ export default function Elev8StartupsPage() {
               initial={scaleIn.initial}
               whileInView={scaleIn.animate}
               viewport={viewportOptions}
-              transition={scaleIn.transition}
+              transition={scaleInTransition}
               className="md:col-span-1 relative h-[400px] rounded-3xl overflow-hidden shadow-2xl border border-purple/20 group order-3 md:order-2"
             >
               <Image
@@ -819,13 +814,18 @@ export default function Elev8StartupsPage() {
       {/* Manifesto Quote - Bold Statement */}
       <section className="relative py-32 md:py-40 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-purple via-violet to-lightPurple"></div>
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cpath d=\"M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E')] opacity-20"></div>
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+          }}
+        ></div>
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={scaleIn.initial}
             whileInView={scaleIn.animate}
             viewport={viewportOptions}
-            transition={scaleIn.transition}
+            transition={scaleInTransition}
             className="text-center"
           >
             <Sparkles className="w-16 h-16 text-white/50 mx-auto mb-8" />
@@ -915,7 +915,7 @@ export default function Elev8StartupsPage() {
                 initial={scaleIn.initial}
                 whileInView={scaleIn.animate}
                 viewport={viewportOptions}
-                transition={scaleIn.transition}
+                transition={scaleInTransition}
                 whileHover={{ scale: 1.05, y: -4 }}
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center gap-3 px-8 py-4 bg-gradient-to-br from-darkPurple/90 to-darkPurple/60 border border-purple/30 rounded-full hover:border-purple/60 hover:shadow-xl hover:shadow-purple/20 transition-all duration-300 text-white font-semibold backdrop-blur-sm"
@@ -928,7 +928,7 @@ export default function Elev8StartupsPage() {
                 initial={scaleIn.initial}
                 whileInView={scaleIn.animate}
                 viewport={viewportOptions}
-                transition={{ ...scaleIn.transition, delay: 0.1 }}
+                transition={{ ...scaleInTransition, delay: 0.1 }}
                 whileHover={{ scale: 1.05, y: -4 }}
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center gap-3 px-8 py-4 bg-gradient-to-br from-darkPurple/90 to-darkPurple/60 border border-purple/30 rounded-full hover:border-purple/60 hover:shadow-xl hover:shadow-purple/20 transition-all duration-300 text-white font-semibold backdrop-blur-sm"
