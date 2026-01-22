@@ -23,12 +23,12 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
         infinite: false,
       });
 
-      function raf(time: number) {
+      const raf = (time: number) => {
         if (lenis) {
           lenis.raf(time);
           requestAnimationFrame(raf);
         }
-      }
+      };
 
       requestAnimationFrame(raf);
     } catch (error) {
