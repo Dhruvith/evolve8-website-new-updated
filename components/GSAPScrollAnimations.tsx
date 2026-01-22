@@ -24,6 +24,11 @@ export function GSAPScrollAnimations() {
       const elements = section.querySelectorAll('[data-gsap-element]');
       
       elements.forEach((element, elIndex) => {
+        // Ensure content is visible by default
+        const htmlElement = element as HTMLElement;
+        htmlElement.style.opacity = '1';
+        htmlElement.style.transform = 'translateY(0) scale(1)';
+        
         gsap.fromTo(
           element,
           {
@@ -44,6 +49,7 @@ export function GSAPScrollAnimations() {
               toggleActions: 'play none none reverse',
             },
             delay: elIndex * 0.1,
+            immediateRender: false,
           }
         );
       });
@@ -66,6 +72,10 @@ export function GSAPScrollAnimations() {
       // Text reveal animation
       const textElements = section.querySelectorAll('[data-gsap-text]');
       textElements.forEach((text) => {
+        // Ensure text is visible initially
+        const htmlText = text as HTMLElement;
+        htmlText.style.clipPath = 'inset(0% 0 0 0)';
+        
         gsap.fromTo(
           text,
           {
@@ -80,6 +90,7 @@ export function GSAPScrollAnimations() {
               start: 'top 80%',
               toggleActions: 'play none none reverse',
             },
+            immediateRender: false,
           }
         );
       });

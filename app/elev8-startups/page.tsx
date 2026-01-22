@@ -290,13 +290,14 @@ export default function Elev8StartupsPage() {
     <main className="min-h-screen bg-dark overflow-hidden relative">
       <GSAPScrollAnimations />
       <Scene3D />
-      <Navbar />
+      <div className="relative z-10">
+        <Navbar />
 
       {/* Hero Section - Premium Design */}
       <section 
         ref={heroRef}
         data-gsap-section
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        className="relative z-10 min-h-screen flex items-center justify-center overflow-hidden"
       >
         {/* Animated Background */}
         <div className="absolute inset-0 z-0">
@@ -330,15 +331,15 @@ export default function Elev8StartupsPage() {
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="text-center"
           >
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 1, opacity: 1 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex justify-center mb-8"
@@ -354,7 +355,7 @@ export default function Elev8StartupsPage() {
             </h1>
             
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
               className="inline-block mb-12"
@@ -421,7 +422,7 @@ export default function Elev8StartupsPage() {
       {/* About Evolve8 Studio */}
       <section 
         data-gsap-section
-        className="relative py-32 md:py-40 bg-dark"
+        className="relative z-10 py-32 md:py-40 bg-dark"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-darkPurple/30 to-transparent"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -464,7 +465,7 @@ export default function Elev8StartupsPage() {
       {/* Program Overview */}
       <section 
         data-gsap-section
-        className="relative py-32 md:py-40 bg-darkPurple/30"
+        className="relative z-10 py-32 md:py-40 bg-darkPurple/30"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -514,7 +515,7 @@ export default function Elev8StartupsPage() {
       {/* Objectives - Enhanced with GSAP */}
       <section 
         data-gsap-section
-        className="relative py-32 md:py-40 bg-dark"
+        className="relative z-10 py-32 md:py-40 bg-dark"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -601,7 +602,7 @@ export default function Elev8StartupsPage() {
       {/* Elev8 Alpha Structure */}
       <section 
         data-gsap-section
-        className="relative py-32 md:py-40 bg-darkPurple/30"
+        className="relative z-10 py-32 md:py-40 bg-darkPurple/30"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -664,7 +665,7 @@ export default function Elev8StartupsPage() {
       {/* 10 Masterclass Sessions */}
       <section 
         data-gsap-section
-        className="relative py-32 md:py-40 bg-dark"
+        className="relative z-10 py-32 md:py-40 bg-dark"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -748,7 +749,7 @@ export default function Elev8StartupsPage() {
       {/* Startup Support & Deliverables */}
       <section 
         data-gsap-section
-        className="relative py-32 md:py-40 bg-darkPurple/30"
+        className="relative z-10 py-32 md:py-40 bg-darkPurple/30"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -869,7 +870,7 @@ export default function Elev8StartupsPage() {
       {/* Why Startups Join Us */}
       <section 
         data-gsap-section
-        className="relative py-32 md:py-40 bg-dark"
+        className="relative z-10 py-32 md:py-40 bg-dark"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -955,7 +956,7 @@ export default function Elev8StartupsPage() {
       {/* Manifesto Quote */}
       <section 
         data-gsap-section
-        className="relative py-32 md:py-40 overflow-hidden"
+        className="relative z-10 py-32 md:py-40 overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-purple via-violet to-lightPurple"></div>
         <div 
@@ -986,7 +987,7 @@ export default function Elev8StartupsPage() {
       {/* Key Timelines */}
       <section 
         data-gsap-section
-        className="relative py-32 md:py-40 bg-dark"
+        className="relative z-10 py-32 md:py-40 bg-dark"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -1048,7 +1049,7 @@ export default function Elev8StartupsPage() {
       <section 
         id="contact"
         data-gsap-section
-        className="relative py-32 md:py-40 bg-darkPurple/30"
+        className="relative z-10 py-32 md:py-40 bg-darkPurple/30"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -1104,7 +1105,8 @@ export default function Elev8StartupsPage() {
         </div>
       </section>
 
-      <Footer />
+        <Footer />
+      </div>
     </main>
   );
 }

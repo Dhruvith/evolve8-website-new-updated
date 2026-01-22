@@ -79,8 +79,12 @@ function FloatingOrb({
 }
 
 export function Scene3D() {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
   return (
-    <div className="fixed inset-0 -z-10 opacity-30">
+    <div className="fixed inset-0 z-0 pointer-events-none opacity-20">
       <Canvas
         camera={{ position: [0, 0, 10], fov: 75 }}
         gl={{ alpha: true, antialias: true }}
