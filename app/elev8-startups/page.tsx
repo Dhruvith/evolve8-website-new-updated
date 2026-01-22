@@ -1,11 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Elev8AlarmLogo } from '@/components/Elev8AlarmLogo';
 import { Button } from '@/components/Button';
+import { Scene3D } from '@/components/Scene3D';
+import { GSAPScrollAnimations } from '@/components/GSAPScrollAnimations';
 import Image from 'next/image';
 import { 
   Target, 
@@ -28,8 +30,78 @@ import {
 
 export default function Elev8StartupsPage() {
   const shouldReduceMotion = useReducedMotion();
+  const heroRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
-  // Enhanced animation variants with more sophisticated easing
+  // Dynamic GSAP import
+  let gsap: any;
+  let ScrollTrigger: any;
+  
+  if (typeof window !== 'undefined') {
+    try {
+      gsap = require('gsap');
+      ScrollTrigger = require('gsap/ScrollTrigger').ScrollTrigger;
+      gsap.registerPlugin(ScrollTrigger);
+    } catch (e) {
+      // GSAP not installed yet
+    }
+  }
+
+  useEffect(() => {
+    // Hero title animation with GSAP
+    if (titleRef.current && !shouldReduceMotion) {
+      const chars = titleRef.current.textContent?.split('') || [];
+      titleRef.current.innerHTML = chars
+        .map((char, i) => `<span class="inline-block" style="opacity: 0;">${char === ' ' ? '&nbsp;' : char}</span>`)
+        .join('');
+      
+      const spans = titleRef.current.querySelectorAll('span');
+      gsap.to(spans, {
+        opacity: 1,
+        duration: 0.05,
+        stagger: 0.02,
+        ease: 'power2.out',
+        delay: 0.5,
+      });
+    }
+
+    // Magnetic effect for buttons
+    if (typeof window !== 'undefined' && gsap) {
+      const buttons = document.querySelectorAll('[data-magnetic]');
+      buttons.forEach((button) => {
+        button.addEventListener('mousemove', (e: Event) => {
+          const mouseEvent = e as MouseEvent;
+          const rect = button.getBoundingClientRect();
+          const x = mouseEvent.clientX - rect.left - rect.width / 2;
+          const y = mouseEvent.clientY - rect.top - rect.height / 2;
+          
+          gsap.to(button, {
+            x: x * 0.3,
+            y: y * 0.3,
+            duration: 0.3,
+            ease: 'power2.out',
+          });
+        });
+
+        button.addEventListener('mouseleave', () => {
+          gsap.to(button, {
+            x: 0,
+            y: 0,
+            duration: 0.5,
+            ease: 'elastic.out(1, 0.5)',
+          });
+        });
+      });
+    }
+
+    return () => {
+      if (ScrollTrigger) {
+        ScrollTrigger.getAll().forEach((trigger: any) => trigger.kill());
+      }
+    };
+  }, [shouldReduceMotion]);
+
+  // Enhanced animation variants
   const fadeInUp = {
     initial: { opacity: 0, y: shouldReduceMotion ? 0 : 50 },
     animate: { opacity: 1, y: 0 },
@@ -215,11 +287,17 @@ export default function Elev8StartupsPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-dark overflow-hidden">
+    <main className="min-h-screen bg-dark overflow-hidden relative">
+      <GSAPScrollAnimations />
+      <Scene3D />
       <Navbar />
 
-      {/* Hero Section - Inspired by PSL.com */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Hero Section - Premium Design */}
+      <section 
+        ref={heroRef}
+        data-gsap-section
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      >
         {/* Animated Background */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-dark via-darkPurple/80 to-dark"></div>
@@ -250,10 +328,6 @@ export default function Elev8StartupsPage() {
               ease: "easeInOut"
             }}
           />
-          {/* Pattern overlay */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239333EA' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-          }}></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
@@ -272,14 +346,12 @@ export default function Elev8StartupsPage() {
               <Elev8AlarmLogo size={72} />
             </motion.div>
             
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+            <h1
+              ref={titleRef}
               className="text-6xl md:text-8xl lg:text-9xl font-display font-bold text-white mb-6 leading-[0.9] tracking-tight"
             >
               Elev8 Alpha
-            </motion.h1>
+            </h1>
             
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -302,6 +374,7 @@ export default function Elev8StartupsPage() {
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
               <Button
+                data-magnetic
                 onClick={() => window.location.href = '/elev8-startups#apply-now'}
                 variant="primary"
                 className="group text-lg px-8 py-4 bg-gradient-to-r from-purple to-violet shadow-2xl shadow-purple/50 hover:shadow-purple/70 hover:scale-105 transition-all duration-300"
@@ -310,6 +383,7 @@ export default function Elev8StartupsPage() {
                 <ArrowRight className="inline-block ml-3 group-hover:translate-x-1 transition-transform" size={24} />
               </Button>
               <Button
+                data-magnetic
                 onClick={() => window.location.href = '/elev8-startups#contact'}
                 variant="outline"
                 className="text-lg px-8 py-4 border-2 border-purple/50 hover:border-purple hover:bg-purple/10 transition-all duration-300"
@@ -344,8 +418,11 @@ export default function Elev8StartupsPage() {
         </motion.div>
       </section>
 
-      {/* About Evolve8 Studio - Clean Section */}
-      <section className="relative py-32 md:py-40 bg-dark">
+      {/* About Evolve8 Studio */}
+      <section 
+        data-gsap-section
+        className="relative py-32 md:py-40 bg-dark"
+      >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-darkPurple/30 to-transparent"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -359,7 +436,10 @@ export default function Elev8StartupsPage() {
               <Elev8AlarmLogo size={48} />
             </div>
             <div>
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight">
+              <h2 
+                data-gsap-text
+                className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
+              >
                 About Evolve8 Studio
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full"></div>
@@ -381,8 +461,11 @@ export default function Elev8StartupsPage() {
         </div>
       </section>
 
-      {/* Program Overview - Modern Card Design */}
-      <section className="relative py-32 md:py-40 bg-darkPurple/30">
+      {/* Program Overview */}
+      <section 
+        data-gsap-section
+        className="relative py-32 md:py-40 bg-darkPurple/30"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={fadeInUp.initial}
@@ -391,7 +474,10 @@ export default function Elev8StartupsPage() {
             transition={fadeInUp.transition}
             className="mb-16"
           >
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight">
+            <h2 
+              data-gsap-text
+              className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
+            >
               Program Overview
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full mb-8"></div>
@@ -412,6 +498,7 @@ export default function Elev8StartupsPage() {
             {sectors.map((sector, index) => (
               <motion.div
                 key={sector}
+                data-gsap-element
                 variants={scaleIn}
                 whileHover={{ scale: 1.05, y: -4 }}
                 className="group relative px-6 py-4 bg-gradient-to-br from-darkPurple/80 to-darkPurple/40 border border-purple/30 rounded-2xl backdrop-blur-sm hover:border-purple/60 hover:shadow-xl hover:shadow-purple/20 transition-all duration-300 cursor-default overflow-hidden"
@@ -424,8 +511,11 @@ export default function Elev8StartupsPage() {
         </div>
       </section>
 
-      {/* Objectives - Enhanced Card Design */}
-      <section className="relative py-32 md:py-40 bg-dark">
+      {/* Objectives - Enhanced with GSAP */}
+      <section 
+        data-gsap-section
+        className="relative py-32 md:py-40 bg-dark"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={fadeInUp.initial}
@@ -438,7 +528,10 @@ export default function Elev8StartupsPage() {
               <Elev8AlarmLogo size={48} />
             </div>
             <div>
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight">
+              <h2 
+                data-gsap-text
+                className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
+              >
                 Objectives
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full"></div>
@@ -453,7 +546,10 @@ export default function Elev8StartupsPage() {
               transition={fadeInLeft.transition}
               className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-purple/20 group"
             >
-              <div className="absolute inset-0">
+              <div 
+                data-gsap-parallax
+                className="absolute inset-0"
+              >
                 <Image
                   src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
                   alt="Target and objectives"
@@ -475,6 +571,7 @@ export default function Elev8StartupsPage() {
               {objectives.map((obj, index) => (
                 <motion.div
                   key={obj.title}
+                  data-gsap-element
                   initial={fadeInUp.initial}
                   whileInView={fadeInUp.animate}
                   viewport={viewportOptions}
@@ -501,21 +598,27 @@ export default function Elev8StartupsPage() {
         </div>
       </section>
 
-      {/* Elev8 Alpha Structure - Enhanced Phase Cards */}
-      <section className="relative py-32 md:py-40 bg-darkPurple/30">
+      {/* Elev8 Alpha Structure */}
+      <section 
+        data-gsap-section
+        className="relative py-32 md:py-40 bg-darkPurple/30"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={fadeInUp.initial}
             whileInView={fadeInUp.animate}
             viewport={viewportOptions}
             transition={fadeInUp.transition}
-            className="flex flex-col md:flex-row items-start gap-6 mb-16"
+            className="flex flex-col md:flex-row items-start gap-6 mb-12 md:mb-16"
           >
             <div className="flex-shrink-0">
               <Elev8AlarmLogo size={48} />
             </div>
             <div>
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight">
+              <h2 
+                data-gsap-text
+                className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
+              >
                 Elev8 Alpha Structure
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full"></div>
@@ -526,6 +629,7 @@ export default function Elev8StartupsPage() {
             {phases.map((phase, index) => (
               <motion.div
                 key={phase.number}
+                data-gsap-element
                 initial={fadeInUp.initial}
                 whileInView={fadeInUp.animate}
                 viewport={viewportOptions}
@@ -557,8 +661,11 @@ export default function Elev8StartupsPage() {
         </div>
       </section>
 
-      {/* 10 Masterclass Sessions - Modern Timeline */}
-      <section className="relative py-32 md:py-40 bg-dark">
+      {/* 10 Masterclass Sessions */}
+      <section 
+        data-gsap-section
+        className="relative py-32 md:py-40 bg-dark"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={fadeInUp.initial}
@@ -571,7 +678,10 @@ export default function Elev8StartupsPage() {
               <Elev8AlarmLogo size={48} />
             </div>
             <div>
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight">
+              <h2 
+                data-gsap-text
+                className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
+              >
                 10 Masterclass Sessions
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full"></div>
@@ -586,13 +696,18 @@ export default function Elev8StartupsPage() {
               transition={fadeInLeft.transition}
               className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-purple/20 group order-2 md:order-1"
             >
-              <Image
-                src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-                alt="Masterclass sessions"
-                fill
-                className="object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
-                loading="lazy"
-              />
+              <div 
+                data-gsap-parallax
+                className="absolute inset-0"
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                  alt="Masterclass sessions"
+                  fill
+                  className="object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
+                  loading="lazy"
+                />
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-darkPurple via-purple/20 to-transparent"></div>
             </motion.div>
             
@@ -606,6 +721,7 @@ export default function Elev8StartupsPage() {
               {masterclasses.map((session, index) => (
                 <motion.div
                   key={session.week}
+                  data-gsap-element
                   initial={fadeInUp.initial}
                   whileInView={fadeInUp.animate}
                   viewport={viewportOptions}
@@ -629,8 +745,11 @@ export default function Elev8StartupsPage() {
         </div>
       </section>
 
-      {/* Startup Support & Deliverables - Enhanced Layout */}
-      <section className="relative py-32 md:py-40 bg-darkPurple/30">
+      {/* Startup Support & Deliverables */}
+      <section 
+        data-gsap-section
+        className="relative py-32 md:py-40 bg-darkPurple/30"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={fadeInUp.initial}
@@ -643,7 +762,10 @@ export default function Elev8StartupsPage() {
               <Elev8AlarmLogo size={48} />
             </div>
             <div>
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight">
+              <h2 
+                data-gsap-text
+                className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
+              >
                 Startup Support & Deliverables
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full"></div>
@@ -663,6 +785,7 @@ export default function Elev8StartupsPage() {
                 {deliverables.map((item, index) => (
                   <motion.li
                     key={item}
+                    data-gsap-element
                     initial={fadeInLeft.initial}
                     whileInView={fadeInLeft.animate}
                     viewport={viewportOptions}
@@ -683,13 +806,18 @@ export default function Elev8StartupsPage() {
               transition={scaleInTransition}
               className="md:col-span-1 relative h-[400px] rounded-3xl overflow-hidden shadow-2xl border border-purple/20 group order-3 md:order-2"
             >
-              <Image
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80"
-                alt="Mentorship and support"
-                fill
-                className="object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
-                loading="lazy"
-              />
+              <div 
+                data-gsap-parallax
+                className="absolute inset-0"
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80"
+                  alt="Mentorship and support"
+                  fill
+                  className="object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
+                  loading="lazy"
+                />
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-darkPurple via-purple/20 to-transparent"></div>
             </motion.div>
             
@@ -705,6 +833,7 @@ export default function Elev8StartupsPage() {
                 {mentorshipBenefits.map((item, index) => (
                   <motion.li
                     key={item}
+                    data-gsap-element
                     initial={fadeInRight.initial}
                     whileInView={fadeInRight.animate}
                     viewport={viewportOptions}
@@ -737,8 +866,11 @@ export default function Elev8StartupsPage() {
         </div>
       </section>
 
-      {/* Why Startups Join Us - Bold Manifesto */}
-      <section className="relative py-32 md:py-40 bg-dark">
+      {/* Why Startups Join Us */}
+      <section 
+        data-gsap-section
+        className="relative py-32 md:py-40 bg-dark"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={fadeInUp.initial}
@@ -751,7 +883,10 @@ export default function Elev8StartupsPage() {
               <Elev8AlarmLogo size={48} />
             </div>
             <div>
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight">
+              <h2 
+                data-gsap-text
+                className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
+              >
                 Why Startups Join Us?
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full"></div>
@@ -778,6 +913,7 @@ export default function Elev8StartupsPage() {
                 ].map((item, index) => (
                   <motion.li
                     key={item.text}
+                    data-gsap-element
                     initial={fadeInLeft.initial}
                     whileInView={fadeInLeft.animate}
                     viewport={viewportOptions}
@@ -798,21 +934,29 @@ export default function Elev8StartupsPage() {
               transition={fadeInRight.transition}
               className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-purple/20 group order-first md:order-last"
             >
-              <Image
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-                alt="Startup presentation"
-                fill
-                className="object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
-                loading="lazy"
-              />
+              <div 
+                data-gsap-parallax
+                className="absolute inset-0"
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                  alt="Startup presentation"
+                  fill
+                  className="object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
+                  loading="lazy"
+                />
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-darkPurple via-purple/20 to-transparent"></div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Manifesto Quote - Bold Statement */}
-      <section className="relative py-32 md:py-40 overflow-hidden">
+      {/* Manifesto Quote */}
+      <section 
+        data-gsap-section
+        className="relative py-32 md:py-40 overflow-hidden"
+      >
         <div className="absolute inset-0 bg-gradient-to-r from-purple via-violet to-lightPurple"></div>
         <div 
           className="absolute inset-0 opacity-20"
@@ -829,15 +973,21 @@ export default function Elev8StartupsPage() {
             className="text-center"
           >
             <Sparkles className="w-16 h-16 text-white/50 mx-auto mb-8" />
-            <p className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight">
+            <p 
+              data-gsap-text
+              className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight"
+            >
               WE'RE NOT JUST ACCELERATING IDEAS, WE'RE SHAPING FUTURE FOUNDERS, PRODUCTS, AND ECOSYSTEMS ACROSS INDIA AND THE UAE.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Key Timelines - Modern Timeline Design */}
-      <section className="relative py-32 md:py-40 bg-dark">
+      {/* Key Timelines */}
+      <section 
+        data-gsap-section
+        className="relative py-32 md:py-40 bg-dark"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={fadeInUp.initial}
@@ -850,7 +1000,10 @@ export default function Elev8StartupsPage() {
               <Elev8AlarmLogo size={48} />
             </div>
             <div>
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight">
+              <h2 
+                data-gsap-text
+                className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
+              >
                 Key Timelines
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full"></div>
@@ -869,6 +1022,7 @@ export default function Elev8StartupsPage() {
                 {timelines.map((timeline, index) => (
                   <motion.div
                     key={timeline.milestone}
+                    data-gsap-element
                     initial={fadeInLeft.initial}
                     whileInView={fadeInLeft.animate}
                     viewport={viewportOptions}
@@ -890,8 +1044,12 @@ export default function Elev8StartupsPage() {
         </div>
       </section>
 
-      {/* Contact Section - Enhanced */}
-      <section id="contact" className="relative py-32 md:py-40 bg-darkPurple/30">
+      {/* Contact Section */}
+      <section 
+        id="contact"
+        data-gsap-section
+        className="relative py-32 md:py-40 bg-darkPurple/30"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={fadeInUp.initial}
@@ -900,7 +1058,10 @@ export default function Elev8StartupsPage() {
             transition={fadeInUp.transition}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-8 leading-tight">
+            <h2 
+              data-gsap-text
+              className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-8 leading-tight"
+            >
               Contact
             </h2>
             <div className="flex justify-center mb-8">
@@ -912,6 +1073,7 @@ export default function Elev8StartupsPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <motion.a
                 href="tel:+916353764766"
+                data-magnetic
                 initial={scaleIn.initial}
                 whileInView={scaleIn.animate}
                 viewport={viewportOptions}
@@ -925,6 +1087,7 @@ export default function Elev8StartupsPage() {
               </motion.a>
               <motion.a
                 href="mailto:elev8alpha@evolve8studio.com"
+                data-magnetic
                 initial={scaleIn.initial}
                 whileInView={scaleIn.animate}
                 viewport={viewportOptions}
