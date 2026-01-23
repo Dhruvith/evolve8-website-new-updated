@@ -10,19 +10,12 @@ import { Scene3D } from '@/components/Scene3D';
 import { GSAPScrollAnimations } from '@/components/GSAPScrollAnimations';
 import Image from 'next/image';
 import { 
-  Target, 
   Users, 
   TrendingUp, 
   Globe, 
   Briefcase, 
-  Zap, 
-  Award, 
-  Calendar,
-  Mail,
-  Phone,
   ArrowRight,
   CheckCircle2,
-  Building2,
   Rocket,
   DollarSign,
   Sparkles
@@ -137,150 +130,82 @@ export default function Elev8StartupsPage() {
   const viewportOptions = { once: true, margin: '-150px' };
 
   const sectors = [
-    'Robotics',
-    'Deep Technology',
-    'AI & Machine Learning',
-    'Blockchain',
-    'SaaS / B2B',
-    'Fintech',
-    'Health Tech'
+    'FinTech',
+    'EdTech',
+    'SaaS',
+    'PaaS',
+    'GreenTech & Climate Tech',
+    'AgriTech',
+    'E-commerce & Marketplaces',
+    'Artificial Intelligence (AI)',
+    'HealthTech',
+    'Software & IT Services'
   ];
 
-  const objectives = [
+  const benefits = [
     {
       icon: Rocket,
-      title: 'Transform Ideas into MVPs',
-      description: 'Convert early-stage concepts into functional, market-ready products',
+      title: 'MVP Development at Zero Upfront Cost',
+      description: 'We design and develop your MVP from the ground up — focusing on usability, scalability, and speed to market.',
+      gradient: 'from-purple to-violet'
+    },
+    {
+      icon: DollarSign,
+      title: 'Equity-Based Partnership',
+      description: 'Instead of charging heavy development fees, we collaborate on a nominal equity basis, ensuring aligned incentives and long-term commitment.',
+      gradient: 'from-violet to-lightPurple'
+    },
+    {
+      icon: Users,
+      title: '30+ Hours of Expert Mentorship',
+      description: 'Founders receive structured mentorship across product & UX strategy, technology & architecture, market validation, go-to-market planning, and scaling & growth readiness.',
+      gradient: 'from-lightPurple to-purple'
+    },
+    {
+      icon: Briefcase,
+      title: 'Co-Building With Evolve8 Studio',
+      description: 'We don\'t hand off projects. We co-build with founders, working as an extended product and technology team.',
       gradient: 'from-purple to-violet'
     },
     {
       icon: Globe,
-      title: 'Cross-Border Growth',
-      description: 'Foster expansion between India and UAE markets',
+      title: 'Investor & Ecosystem Access',
+      description: 'Selected startups gain access to Evolve8 Studio\'s investor and partner network, strategic introductions, and guidance on pitch readiness and fundraising pathways.',
       gradient: 'from-violet to-lightPurple'
-    },
-    {
-      icon: Briefcase,
-      title: 'Resource Access',
-      description: 'Provide comprehensive startup resources and infrastructure',
-      gradient: 'from-lightPurple to-purple'
-    },
-    {
-      icon: Target,
-      title: 'Product-Market Fit',
-      description: 'Build strong alignment between products and target markets',
-      gradient: 'from-purple to-violet'
-    },
-    {
-      icon: Building2,
-      title: 'Sustainable Business Models',
-      description: 'Establish viable, scalable business foundations',
-      gradient: 'from-violet to-lightPurple'
-    },
-    {
-      icon: DollarSign,
-      title: 'Early-Stage Funding',
-      description: 'Secure initial investment and funding opportunities',
-      gradient: 'from-lightPurple to-purple'
-    },
-    {
-      icon: TrendingUp,
-      title: 'Market Expansion',
-      description: 'Expand into new markets and customer segments',
-      gradient: 'from-purple to-violet'
     }
   ];
 
-  const phases = [
+  const programSteps = [
     {
       number: '01',
-      title: 'Foundation',
-      weeks: 'Week 1-2',
-      items: [
-        'Team onboarding',
-        'Understanding solutions',
-        'User identification',
-        'Goal setting'
-      ],
+      title: 'Apply & Register',
+      description: 'Founders submit their startup details through the Elev8 Startups application.',
       colorClass: 'text-purple',
       bgClass: 'from-purple/20'
     },
     {
       number: '02',
-      title: 'Build & Validate',
-      weeks: 'Week 3-6',
-      items: [
-        'Market research',
-        'Competitor benchmarking',
-        'Solution overview',
-        'MVP development'
-      ],
+      title: 'Screening & Shortlisting',
+      description: 'We carefully evaluate startups based on founder commitment, problem clarity, market potential, execution mindset, and strategic fit with Evolve8 Studio.',
       colorClass: 'text-violet',
       bgClass: 'from-violet/20'
     },
     {
       number: '03',
-      title: 'Growth & Funding Prep',
-      weeks: 'Week 7-10',
-      items: [
-        'Go-to-market strategy',
-        'Investor deck preparation',
-        'MVP refinement'
-      ],
+      title: 'Onboarding to Elev8 Startups',
+      description: 'Shortlisted startups are onboarded into the program and aligned on scope, equity, and milestones.',
       colorClass: 'text-lightPurple',
       bgClass: 'from-lightPurple/20'
     },
     {
       number: '04',
-      title: 'Demo Day & Launch',
-      weeks: 'Week 11-12',
-      items: [
-        'Investor pitching',
-        'Demo Day with panel',
-        'Legal, branding, and marketing support'
-      ],
+      title: 'Build, Launch & Prepare to Scale',
+      description: 'We collaboratively build the MVP, launch it to users, and prepare the startup for traction and investor conversations.',
       colorClass: 'text-purple',
       bgClass: 'from-purple/20'
     }
   ];
 
-  const masterclasses = [
-    { week: 1, topic: 'Idea Validation' },
-    { week: 2, topic: 'Market Research' },
-    { week: 3, topic: 'Product Strategy' },
-    { week: 4, topic: 'UX/UI Design Principles' },
-    { week: 5, topic: 'MVP Development' },
-    { week: 6, topic: 'Business Modeling' },
-    { week: 7, topic: 'Go-to-Market Strategy' },
-    { week: 8, topic: 'Fundraising' },
-    { week: 9, topic: 'Growth Hacking' },
-    { week: 10, topic: 'Scaling & Operations' }
-  ];
-
-  const deliverables = [
-    'MVP Development Support',
-    'UX/UI Design',
-    'Go-to-Market Strategy Template',
-    'Weekly 1:1 Mentoring',
-    'Branding & Identity Package',
-    'Digital Marketing Guidelines',
-    'Investor Access & Regional Demo Day',
-    'UAE Company Formation Assistance'
-  ];
-
-  const mentorshipBenefits = [
-    'Direct mentorship from industry experts',
-    'Access to extensive founder and investor networks',
-    'Introductions to strategic partners',
-    'Exclusive workshops and masterclasses'
-  ];
-
-  const timelines = [
-    { milestone: 'Applications Open', date: 'August 2025' },
-    { milestone: 'Application Deadline', date: 'October 15, 2025' },
-    { milestone: 'Program Start', date: 'November 2025' },
-    { milestone: 'Demo Day', date: 'December 15, 2025' }
-  ];
 
   return (
     <main className="min-h-screen bg-dark overflow-hidden relative">
@@ -347,22 +272,31 @@ export default function Elev8StartupsPage() {
               ref={titleRef}
               className="text-6xl md:text-8xl lg:text-9xl font-display font-bold text-white mb-6 leading-[0.9] tracking-tight"
             >
-              Elev8 Alpha
+              Elev8 Startups
             </h1>
             
             <motion.div
               initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="inline-block mb-12"
+              className="inline-block mb-8"
             >
               <div className="relative px-8 py-4 bg-gradient-to-r from-purple/20 via-violet/20 to-lightPurple/20 backdrop-blur-md border border-purple/30 rounded-full">
                 <p className="text-xl md:text-2xl lg:text-3xl font-display font-semibold text-white">
-                  Startup Accelerator by Evolve8 Studio
+                  A Co-Build Program by Evolve8 Studio
                 </p>
                 <div className="absolute inset-0 bg-gradient-to-r from-purple via-violet to-lightPurple opacity-20 rounded-full blur-xl"></div>
               </div>
             </motion.div>
+
+            <motion.p
+              initial={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-2xl md:text-3xl lg:text-4xl text-gray mb-12 max-w-4xl mx-auto leading-relaxed"
+            >
+              Build, Launch & Scale Your MVP — With Partnership, Not Upfront Cost
+            </motion.p>
 
             <motion.div
               initial={{ opacity: 1, y: 0 }}
@@ -376,12 +310,15 @@ export default function Elev8StartupsPage() {
                 variant="primary"
                 className="group text-lg px-8 py-4 bg-gradient-to-r from-purple to-violet shadow-2xl shadow-purple/50 hover:shadow-purple/70 hover:scale-105 transition-all duration-300"
               >
-                Apply for Elev8 Alpha
+                Apply to Elev8 Startups
                 <ArrowRight className="inline-block ml-3 group-hover:translate-x-1 transition-transform" size={24} />
               </Button>
               <Button
                 data-magnetic
-                onClick={() => window.location.href = '/elev8-startups#contact'}
+                onClick={() => {
+                  const element = document.getElementById('what-is-elev8');
+                  element?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 variant="outline"
                 className="text-lg px-8 py-4 border-2 border-purple/50 hover:border-purple hover:bg-purple/10 transition-all duration-300"
               >
@@ -415,8 +352,9 @@ export default function Elev8StartupsPage() {
         </motion.div>
       </section>
 
-      {/* About Evolve8 Studio */}
+      {/* What Is Elev8 Startups */}
       <section 
+        id="what-is-elev8"
         data-gsap-section
         className="relative z-10 py-32 md:py-40 bg-dark"
       >
@@ -437,7 +375,7 @@ export default function Elev8StartupsPage() {
                 data-gsap-text
                 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
               >
-                About Evolve8 Studio
+                What Is Elev8 Startups?
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full"></div>
             </div>
@@ -447,18 +385,46 @@ export default function Elev8StartupsPage() {
             whileInView={fadeInUp.animate}
             viewport={viewportOptions}
             transition={{ ...fadeInUp.transition, delay: 0.2 }}
-            className="max-w-4xl"
+            className="max-w-4xl space-y-6"
           >
             <p className="text-xl md:text-2xl text-gray leading-relaxed">
-              Evolve8 Studio is a Dubai-based Venture Studio focused on empowering startups. 
-              We provide comprehensive support in MVP development, business modeling, branding, 
-              funding, and market expansion, with a strong focus on India and UAE markets.
+              Elev8 Startups is a co-build program where Evolve8 Studio works as a venture and technology partner, not a service provider.
+            </p>
+            <p className="text-xl md:text-2xl text-gray leading-relaxed">
+              We collaborate with a small group of selected startups in each cycle, co-building their product, shaping strategy, and supporting them beyond MVP.
+            </p>
+            <p className="text-xl md:text-2xl text-gray leading-relaxed">
+              In each cycle, we select up to 8 startups and partner with them to:
+            </p>
+            <ul className="space-y-4 ml-6">
+              {[
+                'Build a production-ready MVP',
+                'Refine product and technology strategy',
+                'Receive structured mentorship (30+ hours)',
+                'Prepare for growth, traction, and investor conversations'
+              ].map((item, index) => (
+                <motion.li
+                  key={item}
+                  data-gsap-element
+                  initial={fadeInLeft.initial}
+                  whileInView={fadeInLeft.animate}
+                  viewport={viewportOptions}
+                  transition={{ ...fadeInLeft.transition, delay: index * 0.1 }}
+                  className="flex items-start gap-3 text-xl text-gray"
+                >
+                  <CheckCircle2 className="w-6 h-6 text-purple flex-shrink-0 mt-1" />
+                  <span>{item}</span>
+                </motion.li>
+              ))}
+            </ul>
+            <p className="text-xl md:text-2xl text-gray leading-relaxed mt-6">
+              In return, we collaborate on a nominal equity basis, aligning our success with yours.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Program Overview */}
+      {/* Startup Sectors We Support */}
       <section 
         data-gsap-section
         className="relative z-10 py-32 md:py-40 bg-darkPurple/30"
@@ -475,13 +441,11 @@ export default function Elev8StartupsPage() {
               data-gsap-text
               className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
             >
-              Program Overview
+              Startup Sectors We Support
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full mb-8"></div>
             <p className="text-xl md:text-2xl text-gray max-w-4xl leading-relaxed">
-              Elev8 Alpha is a <strong className="text-white font-semibold">12-week hybrid accelerator program</strong> designed for 
-              tech startups. With a physical presence in Dubai/UAE and digital reach across UAE, 
-              we provide full startup transformation—from idea to Alpha.
+              We actively work with startups across the following sectors. If your startup operates at the intersection of technology and scalability, we encourage you to apply.
             </p>
           </motion.div>
           
@@ -508,7 +472,7 @@ export default function Elev8StartupsPage() {
         </div>
       </section>
 
-      {/* Objectives - Enhanced with GSAP */}
+      {/* What Selected Startups Receive */}
       <section 
         data-gsap-section
         className="relative z-10 py-32 md:py-40 bg-dark"
@@ -529,7 +493,7 @@ export default function Elev8StartupsPage() {
                 data-gsap-text
                 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
               >
-                Objectives
+                What Selected Startups Receive
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full"></div>
             </div>
@@ -549,7 +513,7 @@ export default function Elev8StartupsPage() {
               >
                 <Image
                   src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-                  alt="Target and objectives"
+                  alt="Startup benefits"
                   fill
                   className="object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
                   loading="lazy"
@@ -565,9 +529,9 @@ export default function Elev8StartupsPage() {
               transition={fadeInRight.transition}
               className="space-y-4"
             >
-              {objectives.map((obj, index) => (
+              {benefits.map((benefit, index) => (
                 <motion.div
-                  key={obj.title}
+                  key={benefit.title}
                   data-gsap-element
                   initial={fadeInUp.initial}
                   whileInView={fadeInUp.animate}
@@ -576,16 +540,16 @@ export default function Elev8StartupsPage() {
                   whileHover={{ x: 8, scale: 1.02 }}
                   className="group relative p-6 bg-gradient-to-br from-darkPurple/90 to-darkPurple/60 border border-purple/30 rounded-2xl hover:border-purple/60 hover:shadow-xl hover:shadow-purple/20 transition-all duration-300 backdrop-blur-sm overflow-hidden"
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${obj.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
                   <div className="relative flex gap-4">
-                    <div className={`flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br ${obj.gradient} p-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                      <obj.icon className="w-7 h-7 text-white" />
+                    <div className={`flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br ${benefit.gradient} p-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <benefit.icon className="w-7 h-7 text-white" />
                     </div>
                     <div className="flex-1">
                       <h3 className="font-display font-bold text-xl text-white mb-2">
-                        {obj.title}
+                        {benefit.title}
                       </h3>
-                      <p className="text-gray leading-relaxed">{obj.description}</p>
+                      <p className="text-gray leading-relaxed">{benefit.description}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -595,7 +559,7 @@ export default function Elev8StartupsPage() {
         </div>
       </section>
 
-      {/* Elev8 Alpha Structure */}
+      {/* How the Program Works */}
       <section 
         data-gsap-section
         className="relative z-10 py-32 md:py-40 bg-darkPurple/30"
@@ -616,16 +580,16 @@ export default function Elev8StartupsPage() {
                 data-gsap-text
                 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
               >
-                Elev8 Alpha Structure
+                How the Program Works
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full"></div>
             </div>
           </motion.div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {phases.map((phase, index) => (
+            {programSteps.map((step, index) => (
               <motion.div
-                key={phase.number}
+                key={step.number}
                 data-gsap-element
                 initial={fadeInUp.initial}
                 whileInView={fadeInUp.animate}
@@ -634,23 +598,17 @@ export default function Elev8StartupsPage() {
                 whileHover={{ y: -8, scale: 1.02 }}
                 className="group relative p-8 bg-gradient-to-br from-darkPurple/90 to-darkPurple/60 border border-purple/30 rounded-3xl hover:border-purple/60 hover:shadow-2xl hover:shadow-purple/30 transition-all duration-300 backdrop-blur-sm overflow-hidden"
               >
-                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${phase.bgClass} to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${step.bgClass} to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
                 <div className="relative">
-                  <div className={`text-7xl font-display font-bold ${phase.colorClass}/20 mb-4 group-hover:${phase.colorClass}/30 transition-colors`}>
-                    {phase.number}
+                  <div className={`text-7xl font-display font-bold ${step.colorClass}/20 mb-4 group-hover:${step.colorClass}/30 transition-colors`}>
+                    {step.number}
                   </div>
-                  <div className={`text-sm font-semibold ${phase.colorClass} mb-3`}>{phase.weeks}</div>
-                  <h3 className="text-2xl font-display font-bold text-white mb-6">
-                    {phase.title}
+                  <h3 className="text-2xl font-display font-bold text-white mb-4">
+                    {step.title}
                   </h3>
-                  <ul className="space-y-3">
-                    {phase.items.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-gray">
-                        <CheckCircle2 className={`w-5 h-5 ${phase.colorClass} flex-shrink-0 mt-0.5`} />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <p className="text-gray leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -658,7 +616,7 @@ export default function Elev8StartupsPage() {
         </div>
       </section>
 
-      {/* 10 Masterclass Sessions */}
+      {/* Who Should Apply */}
       <section 
         data-gsap-section
         className="relative z-10 py-32 md:py-40 bg-dark"
@@ -679,212 +637,7 @@ export default function Elev8StartupsPage() {
                 data-gsap-text
                 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
               >
-                10 Masterclass Sessions
-              </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full"></div>
-            </div>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={fadeInLeft.initial}
-              whileInView={fadeInLeft.animate}
-              viewport={viewportOptions}
-              transition={fadeInLeft.transition}
-              className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-purple/20 group order-2 md:order-1"
-            >
-              <div 
-                data-gsap-parallax
-                className="absolute inset-0"
-              >
-                <Image
-                  src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-                  alt="Masterclass sessions"
-                  fill
-                  className="object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
-                  loading="lazy"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-darkPurple via-purple/20 to-transparent"></div>
-            </motion.div>
-            
-            <motion.div
-              initial={fadeInRight.initial}
-              whileInView={fadeInRight.animate}
-              viewport={viewportOptions}
-              transition={fadeInRight.transition}
-              className="space-y-3 order-1 md:order-2"
-            >
-              {masterclasses.map((session, index) => (
-                <motion.div
-                  key={session.week}
-                  data-gsap-element
-                  initial={fadeInUp.initial}
-                  whileInView={fadeInUp.animate}
-                  viewport={viewportOptions}
-                  transition={{ ...fadeInUp.transition, delay: index * 0.04 }}
-                  whileHover={{ x: 8, scale: 1.02 }}
-                  className="group relative flex items-center gap-6 p-6 bg-gradient-to-br from-darkPurple/90 to-darkPurple/60 border border-purple/30 rounded-2xl hover:border-purple/60 hover:shadow-xl hover:shadow-purple/20 transition-all duration-300 backdrop-blur-sm overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple/0 via-purple/5 to-purple/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-purple to-violet flex items-center justify-center text-white font-display font-bold text-xl group-hover:scale-110 transition-transform duration-300">
-                    {session.week}
-                  </div>
-                  <div className="relative flex-1">
-                    <h3 className="font-display font-semibold text-xl text-white">
-                      {session.topic}
-                    </h3>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Startup Support & Deliverables */}
-      <section 
-        data-gsap-section
-        className="relative z-10 py-32 md:py-40 bg-darkPurple/30"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={fadeInUp.initial}
-            whileInView={fadeInUp.animate}
-            viewport={viewportOptions}
-            transition={fadeInUp.transition}
-            className="flex flex-col md:flex-row items-start gap-6 mb-16"
-          >
-            <div className="flex-shrink-0">
-              <Elev8AlarmLogo size={48} />
-            </div>
-            <div>
-              <h2 
-                data-gsap-text
-                className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
-              >
-                Startup Support & Deliverables
-              </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full"></div>
-            </div>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <motion.div
-              initial={fadeInLeft.initial}
-              whileInView={fadeInLeft.animate}
-              viewport={viewportOptions}
-              transition={fadeInLeft.transition}
-              className="md:col-span-1"
-            >
-              <h3 className="text-2xl font-display font-bold text-white mb-6">Deliverables</h3>
-              <ul className="space-y-4">
-                {deliverables.map((item, index) => (
-                  <motion.li
-                    key={item}
-                    data-gsap-element
-                    initial={fadeInLeft.initial}
-                    whileInView={fadeInLeft.animate}
-                    viewport={viewportOptions}
-                    transition={{ ...fadeInLeft.transition, delay: index * 0.05 }}
-                    className="flex items-start gap-3 p-4 bg-darkPurple/60 border border-purple/20 rounded-xl hover:border-purple/40 transition-colors"
-                  >
-                    <CheckCircle2 className="w-6 h-6 text-purple flex-shrink-0 mt-0.5" />
-                    <span className="text-gray leading-relaxed">{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
-            
-            <motion.div
-              initial={scaleIn.initial}
-              whileInView={scaleIn.animate}
-              viewport={viewportOptions}
-              transition={scaleInTransition}
-              className="md:col-span-1 relative h-[400px] rounded-3xl overflow-hidden shadow-2xl border border-purple/20 group order-3 md:order-2"
-            >
-              <div 
-                data-gsap-parallax
-                className="absolute inset-0"
-              >
-                <Image
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80"
-                  alt="Mentorship and support"
-                  fill
-                  className="object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
-                  loading="lazy"
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-darkPurple via-purple/20 to-transparent"></div>
-            </motion.div>
-            
-            <motion.div
-              initial={fadeInRight.initial}
-              whileInView={fadeInRight.animate}
-              viewport={viewportOptions}
-              transition={fadeInRight.transition}
-              className="md:col-span-1 order-2 md:order-3"
-            >
-              <h3 className="text-2xl font-display font-bold text-white mb-6">Mentorship & Network</h3>
-              <ul className="space-y-4 mb-8">
-                {mentorshipBenefits.map((item, index) => (
-                  <motion.li
-                    key={item}
-                    data-gsap-element
-                    initial={fadeInRight.initial}
-                    whileInView={fadeInRight.animate}
-                    viewport={viewportOptions}
-                    transition={{ ...fadeInRight.transition, delay: index * 0.05 }}
-                    className="flex items-start gap-3 p-4 bg-darkPurple/60 border border-purple/20 rounded-xl hover:border-purple/40 transition-colors"
-                  >
-                    <Users className="w-6 h-6 text-purple flex-shrink-0 mt-0.5" />
-                    <span className="text-gray leading-relaxed">{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
-              <motion.div
-                whileHover={{ scale: 1.02, y: -4 }}
-                className="relative p-6 bg-gradient-to-br from-purple via-violet to-lightPurple rounded-2xl border border-purple/30 overflow-hidden group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-purple/50 to-violet/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Calendar className="w-6 h-6 text-white" />
-                    <h4 className="font-display font-bold text-xl text-white">Demo Day</h4>
-                  </div>
-                  <p className="text-3xl font-display font-bold text-white mb-2">December 15, 2025</p>
-                  <p className="text-purple-100 leading-relaxed">
-                    Present your startup to a panel of investors and industry leaders
-                  </p>
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Startups Join Us */}
-      <section 
-        data-gsap-section
-        className="relative z-10 py-32 md:py-40 bg-dark"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={fadeInUp.initial}
-            whileInView={fadeInUp.animate}
-            viewport={viewportOptions}
-            transition={fadeInUp.transition}
-            className="flex flex-col md:flex-row items-start gap-6 mb-16"
-          >
-            <div className="flex-shrink-0">
-              <Elev8AlarmLogo size={48} />
-            </div>
-            <div>
-              <h2 
-                data-gsap-text
-                className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
-              >
-                Why Startups Join Us?
+                Who Should Apply
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full"></div>
             </div>
@@ -898,18 +651,19 @@ export default function Elev8StartupsPage() {
               transition={fadeInLeft.transition}
               className="space-y-6"
             >
-              <h3 className="text-3xl md:text-4xl font-display font-bold text-white mb-6">
-                Cross-Border Expansion Opportunity
-              </h3>
+              <p className="text-xl md:text-2xl text-gray leading-relaxed mb-8">
+                Elev8 Startups is ideal for:
+              </p>
               <ul className="space-y-4">
                 {[
-                  { icon: Building2, text: 'Assistance with UAE incorporation' },
-                  { icon: Users, text: 'Mentor matching with industry experts' },
-                  { icon: Globe, text: 'Introductions to UAE Startup Ecosystem' },
-                  { icon: Award, text: '3-month post-program support for Dubai operations' }
+                  'Early-stage founders at idea or validation stage',
+                  'Non-technical or partially technical founding teams',
+                  'Startups looking for a long-term tech & product partner',
+                  'Founders who want to build fast without burning capital',
+                  'Teams serious about execution, ownership, and scale'
                 ].map((item, index) => (
                   <motion.li
-                    key={item.text}
+                    key={item}
                     data-gsap-element
                     initial={fadeInLeft.initial}
                     whileInView={fadeInLeft.animate}
@@ -917,11 +671,14 @@ export default function Elev8StartupsPage() {
                     transition={{ ...fadeInLeft.transition, delay: index * 0.08 }}
                     className="flex items-start gap-4 p-4 bg-darkPurple/60 border border-purple/20 rounded-xl hover:border-purple/40 transition-colors"
                   >
-                    <item.icon className="w-6 h-6 text-purple flex-shrink-0 mt-0.5" />
-                    <span className="text-gray leading-relaxed">{item.text}</span>
+                    <CheckCircle2 className="w-6 h-6 text-purple flex-shrink-0 mt-0.5" />
+                    <span className="text-gray leading-relaxed text-lg">{item}</span>
                   </motion.li>
                 ))}
               </ul>
+              <p className="text-xl text-gray leading-relaxed mt-8 italic">
+                This program is designed for founders seeking a long-term partner, not short-term outsourcing.
+              </p>
             </motion.div>
             
             <motion.div
@@ -929,15 +686,15 @@ export default function Elev8StartupsPage() {
               whileInView={fadeInRight.animate}
               viewport={viewportOptions}
               transition={fadeInRight.transition}
-              className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-purple/20 group order-first md:order-last"
+              className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-purple/20 group"
             >
               <div 
                 data-gsap-parallax
                 className="absolute inset-0"
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-                  alt="Startup presentation"
+                  src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                  alt="Founders and startups"
                   fill
                   className="object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
                   loading="lazy"
@@ -946,6 +703,167 @@ export default function Elev8StartupsPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-darkPurple via-purple/20 to-transparent"></div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+
+      {/* Why Startups Choose Evolve8 Studio */}
+      <section 
+        data-gsap-section
+        className="relative z-10 py-32 md:py-40 bg-dark"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={fadeInUp.initial}
+            whileInView={fadeInUp.animate}
+            viewport={viewportOptions}
+            transition={fadeInUp.transition}
+            className="flex flex-col md:flex-row items-start gap-6 mb-16"
+          >
+            <div className="flex-shrink-0">
+              <Elev8AlarmLogo size={48} />
+            </div>
+            <div>
+              <h2 
+                data-gsap-text
+                className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
+              >
+                Why Startups Choose Evolve8 Studio
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full"></div>
+            </div>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={fadeInLeft.initial}
+              whileInView={fadeInLeft.animate}
+              viewport={viewportOptions}
+              transition={fadeInLeft.transition}
+              className="space-y-6"
+            >
+              {[
+                { 
+                  icon: Rocket, 
+                  title: 'Startup-First DNA',
+                  text: 'We are built for startups — speed, adaptability, and execution drive everything we do.'
+                },
+                { 
+                  icon: Users, 
+                  title: 'We Act as Partners, Not Vendors',
+                  text: 'Our success depends on your success. That\'s why we invest our time, expertise, and technology alongside you.'
+                },
+                { 
+                  icon: Briefcase, 
+                  title: 'Proven Venture Studio Approach',
+                  text: 'Evolve8 Studio combines product building, mentoring, and venture thinking under one roof.'
+                },
+                { 
+                  icon: TrendingUp, 
+                  title: 'Long-Term Vision',
+                  text: 'We don\'t stop at MVPs. We help startups think long-term — product roadmap, scalability, and funding readiness.'
+                }
+              ].map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  data-gsap-element
+                  initial={fadeInLeft.initial}
+                  whileInView={fadeInLeft.animate}
+                  viewport={viewportOptions}
+                  transition={{ ...fadeInLeft.transition, delay: index * 0.08 }}
+                  whileHover={{ x: 8, scale: 1.02 }}
+                  className="group p-6 bg-gradient-to-br from-darkPurple/90 to-darkPurple/60 border border-purple/30 rounded-2xl hover:border-purple/60 hover:shadow-xl hover:shadow-purple/20 transition-all duration-300 backdrop-blur-sm"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-purple to-violet p-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <item.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-display font-bold text-xl text-white mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-gray leading-relaxed">{item.text}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+            
+            <motion.div
+              initial={fadeInRight.initial}
+              whileInView={fadeInRight.animate}
+              viewport={viewportOptions}
+              transition={fadeInRight.transition}
+              className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-purple/20 group"
+            >
+              <div 
+                data-gsap-parallax
+                className="absolute inset-0"
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                  alt="Evolve8 Studio partnership"
+                  fill
+                  className="object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-darkPurple via-purple/20 to-transparent"></div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Selection Is Limited */}
+      <section 
+        data-gsap-section
+        className="relative z-10 py-32 md:py-40 bg-darkPurple/30"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={fadeInUp.initial}
+            whileInView={fadeInUp.animate}
+            viewport={viewportOptions}
+            transition={fadeInUp.transition}
+            className="text-center max-w-4xl mx-auto"
+          >
+            <h2 
+              data-gsap-text
+              className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-8 leading-tight"
+            >
+              Selection Is Limited
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full mx-auto mb-8"></div>
+            <p className="text-xl md:text-2xl text-gray leading-relaxed mb-8">
+              We intentionally limit each cycle to 8 startups to ensure:
+            </p>
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
+              {[
+                'Deep involvement',
+                'High-quality execution',
+                'Meaningful mentorship',
+                'Strong partnership alignment'
+              ].map((item, index) => (
+                <motion.div
+                  key={item}
+                  data-gsap-element
+                  initial={fadeInUp.initial}
+                  whileInView={fadeInUp.animate}
+                  viewport={viewportOptions}
+                  transition={{ ...fadeInUp.transition, delay: index * 0.1 }}
+                  className="p-6 bg-gradient-to-br from-darkPurple/90 to-darkPurple/60 border border-purple/30 rounded-2xl"
+                >
+                  <div className="flex items-center gap-4">
+                    <CheckCircle2 className="w-6 h-6 text-purple flex-shrink-0" />
+                    <span className="text-gray text-lg">{item}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            <p className="text-xl text-gray leading-relaxed italic">
+              Only startups that meet our criteria and align with our values are selected.
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -974,76 +892,16 @@ export default function Elev8StartupsPage() {
               data-gsap-text
               className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight"
             >
-              WE'RE NOT JUST ACCELERATING IDEAS, WE'RE SHAPING FUTURE FOUNDERS, PRODUCTS, AND ECOSYSTEMS ACROSS INDIA AND THE UAE.
+              We don't just help startups build products. We partner with founders to build companies.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Key Timelines */}
-      <section 
-        data-gsap-section
-        className="relative z-10 py-32 md:py-40 bg-dark"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={fadeInUp.initial}
-            whileInView={fadeInUp.animate}
-            viewport={viewportOptions}
-            transition={fadeInUp.transition}
-            className="flex flex-col md:flex-row items-start gap-6 mb-16"
-          >
-            <div className="flex-shrink-0">
-              <Elev8AlarmLogo size={48} />
-            </div>
-            <div>
-              <h2 
-                data-gsap-text
-                className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
-              >
-                Key Timelines
-              </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-purple to-violet rounded-full"></div>
-            </div>
-          </motion.div>
-          
-          <motion.div
-            initial={fadeInUp.initial}
-            whileInView={fadeInUp.animate}
-            viewport={viewportOptions}
-            transition={{ ...fadeInUp.transition, delay: 0.2 }}
-            className="max-w-4xl"
-          >
-            <div className="bg-gradient-to-br from-darkPurple/90 to-darkPurple/60 border border-purple/30 rounded-3xl p-8 md:p-12 shadow-2xl backdrop-blur-sm">
-              <div className="space-y-6">
-                {timelines.map((timeline, index) => (
-                  <motion.div
-                    key={timeline.milestone}
-                    data-gsap-element
-                    initial={fadeInLeft.initial}
-                    whileInView={fadeInLeft.animate}
-                    viewport={viewportOptions}
-                    transition={{ ...fadeInLeft.transition, delay: index * 0.1 }}
-                    whileHover={{ x: 8, scale: 1.02 }}
-                    className="group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6 bg-dark border border-purple/30 rounded-2xl hover:border-purple/60 hover:shadow-xl hover:shadow-purple/20 transition-all duration-300"
-                  >
-                    <span className="text-xl md:text-2xl font-display font-semibold text-white">
-                      {timeline.milestone}
-                    </span>
-                    <span className="text-xl md:text-2xl font-display font-bold bg-gradient-to-r from-purple to-violet bg-clip-text text-transparent group-hover:from-violet group-hover:to-lightPurple transition-all">
-                      {timeline.date}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
-      {/* Contact Section */}
+      {/* Apply to Elev8 Startups */}
       <section 
-        id="contact"
+        id="apply-now"
         data-gsap-section
         className="relative z-10 py-32 md:py-40 bg-darkPurple/30"
       >
@@ -1059,44 +917,51 @@ export default function Elev8StartupsPage() {
               data-gsap-text
               className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-8 leading-tight"
             >
-              Contact
+              Apply to Elev8 Startups
             </h2>
             <div className="flex justify-center mb-8">
               <Elev8AlarmLogo size={72} />
             </div>
-            <p className="text-xl md:text-2xl text-gray max-w-2xl mx-auto mb-12 leading-relaxed">
-              Ready to transform your startup idea into reality? Get in touch with us to learn more about Elev8 Alpha.
+            <p className="text-xl md:text-2xl text-gray max-w-3xl mx-auto mb-8 leading-relaxed">
+              If you are ready to:
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <motion.a
-                href="tel:+916353764766"
+            <ul className="space-y-4 mb-12 max-w-2xl mx-auto text-left">
+              {[
+                'Build your MVP without upfront development costs',
+                'Partner with a committed venture studio',
+                'Receive expert mentorship and ecosystem access',
+                'Take your startup from idea to execution'
+              ].map((item, index) => (
+                <motion.li
+                  key={item}
+                  data-gsap-element
+                  initial={fadeInUp.initial}
+                  whileInView={fadeInUp.animate}
+                  viewport={viewportOptions}
+                  transition={{ ...fadeInUp.transition, delay: index * 0.1 }}
+                  className="flex items-start gap-3 text-xl text-gray"
+                >
+                  <CheckCircle2 className="w-6 h-6 text-purple flex-shrink-0 mt-1" />
+                  <span>{item}</span>
+                </motion.li>
+              ))}
+            </ul>
+            <motion.div
+              initial={scaleIn.initial}
+              whileInView={scaleIn.animate}
+              viewport={viewportOptions}
+              transition={scaleInTransition}
+            >
+              <Button
                 data-magnetic
-                initial={scaleIn.initial}
-                whileInView={scaleIn.animate}
-                viewport={viewportOptions}
-                transition={scaleInTransition}
-                whileHover={{ scale: 1.05, y: -4 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-3 px-8 py-4 bg-gradient-to-br from-darkPurple/90 to-darkPurple/60 border border-purple/30 rounded-full hover:border-purple/60 hover:shadow-xl hover:shadow-purple/20 transition-all duration-300 text-white font-semibold backdrop-blur-sm"
+                onClick={() => window.location.href = '/elev8-startups#apply-now'}
+                variant="primary"
+                className="group text-lg px-12 py-6 bg-gradient-to-r from-purple to-violet shadow-2xl shadow-purple/50 hover:shadow-purple/70 hover:scale-105 transition-all duration-300"
               >
-                <Phone className="w-6 h-6 text-purple" />
-                <span>+91 6353764766</span>
-              </motion.a>
-              <motion.a
-                href="mailto:elev8alpha@evolve8studio.com"
-                data-magnetic
-                initial={scaleIn.initial}
-                whileInView={scaleIn.animate}
-                viewport={viewportOptions}
-                transition={{ ...scaleInTransition, delay: 0.1 }}
-                whileHover={{ scale: 1.05, y: -4 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-3 px-8 py-4 bg-gradient-to-br from-darkPurple/90 to-darkPurple/60 border border-purple/30 rounded-full hover:border-purple/60 hover:shadow-xl hover:shadow-purple/20 transition-all duration-300 text-white font-semibold backdrop-blur-sm"
-              >
-                <Mail className="w-6 h-6 text-purple" />
-                <span>elev8alpha@evolve8studio.com</span>
-              </motion.a>
-            </div>
+                Apply to the Elev8 Startups Program today
+                <ArrowRight className="inline-block ml-3 group-hover:translate-x-1 transition-transform" size={24} />
+              </Button>
+            </motion.div>
           </motion.div>
         </div>
       </section>
