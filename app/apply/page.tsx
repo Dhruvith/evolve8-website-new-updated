@@ -11,6 +11,10 @@ import { ArrowRight } from 'lucide-react';
 export default function ApplyPage() {
   const [formData, setFormData] = useState({
     founderName: '',
+    email: '',
+    phone: '',
+    country: '',
+    startupWebsite: '',
     background: '',
     problemStatement: '',
     targetMarket: '',
@@ -179,7 +183,7 @@ export default function ApplyPage() {
                 <input type="hidden" name="_next" value={`${typeof window !== 'undefined' ? window.location.origin : ''}/apply?success=true`} />
                 <input type="hidden" name="_captcha" value="false" />
                 <input type="hidden" name="_template" value="table" />
-                <input type="hidden" name="_autoresponse" value="Thank you for your application to Evolve8 Studio! We'll review it and get back to you within 2-3 business days." />
+                <input type="hidden" name="_autoresponse" value="Thank you for your application to Evolve8 Studio! We will get back to you within 24hrs after submission." />
                 <div>
                   <label htmlFor="founderName" className="block text-sm font-medium text-white mb-2">
                     Founder Name *
@@ -192,6 +196,66 @@ export default function ApplyPage() {
                     value={formData.founderName}
                     onChange={handleChange}
                     className="w-full px-4 py-3 rounded-xl bg-darkPurple/80 border border-purple/30 text-white placeholder-gray/50 focus:border-purple focus:ring-2 focus:ring-purple/20 outline-none transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-xl bg-darkPurple/80 border border-purple/30 text-white placeholder-gray/50 focus:border-purple focus:ring-2 focus:ring-purple/20 outline-none transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-white mb-2">
+                    Phone *
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    required
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-xl bg-darkPurple/80 border border-purple/30 text-white placeholder-gray/50 focus:border-purple focus:ring-2 focus:ring-purple/20 outline-none transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="country" className="block text-sm font-medium text-white mb-2">
+                    Country *
+                  </label>
+                  <input
+                    type="text"
+                    id="country"
+                    name="country"
+                    required
+                    value={formData.country}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-xl bg-darkPurple/80 border border-purple/30 text-white placeholder-gray/50 focus:border-purple focus:ring-2 focus:ring-purple/20 outline-none transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="startupWebsite" className="block text-sm font-medium text-white mb-2">
+                    Startup Website (if any)
+                  </label>
+                  <input
+                    type="url"
+                    id="startupWebsite"
+                    name="startupWebsite"
+                    value={formData.startupWebsite}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-xl bg-darkPurple/80 border border-purple/30 text-white placeholder-gray/50 focus:border-purple focus:ring-2 focus:ring-purple/20 outline-none transition-all"
+                    placeholder="https://"
                   />
                 </div>
 
@@ -355,7 +419,7 @@ export default function ApplyPage() {
               </div>
               <h2 className="text-3xl font-display font-bold text-white mb-4">Application Submitted!</h2>
               <p className="text-lg text-gray mb-8">
-                Thank you for your application. We'll review it and get back to you within 2-3 business days.
+                Thank you. We will get back to you within 24hrs after submission.
               </p>
               <Button
                 onClick={() => window.location.href = '/'}
