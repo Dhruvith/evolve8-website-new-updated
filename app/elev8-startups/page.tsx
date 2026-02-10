@@ -1035,7 +1035,7 @@ export default function Elev8StartupsPage() {
                     >
                       <input type="hidden" name="_subject" value="New Elev8 Startups Application" />
                       <input type="hidden" name="_next" value={`${typeof window !== 'undefined' ? window.location.origin : ''}/elev8-startups?success=true`} />
-                      <input type="hidden" name="_captcha" value="false" />
+                      <input type="hidden" name="_captcha" value="true" />
                       <input type="hidden" name="_template" value="table" />
                       <input type="hidden" name="_autoresponse" value="Thank you for your application to the Elev8 Startups Program! We will review your submission and get back to you within 24-48 hours." />
 

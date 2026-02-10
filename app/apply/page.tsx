@@ -79,7 +79,7 @@ export default function ApplyPage() {
   return (
     <main className="min-h-screen">
       <Navbar />
-      
+
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-br from-dark via-darkPurple to-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -172,7 +172,7 @@ export default function ApplyPage() {
                 Form submission handled by formsubmit.co - No API keys or backend required!
                 Form will automatically email evolve8studio@gmail.com and redirect back with success message
               */}
-              <form 
+              <form
                 action="https://formsubmit.co/evolve8studio@gmail.com"
                 method="POST"
                 onSubmit={handleSubmit}
@@ -181,7 +181,7 @@ export default function ApplyPage() {
                 {/* Formsubmit.co configuration */}
                 <input type="hidden" name="_subject" value="New Application from Evolve8 Website" />
                 <input type="hidden" name="_next" value={`${typeof window !== 'undefined' ? window.location.origin : ''}/apply?success=true`} />
-                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_captcha" value="true" />
                 <input type="hidden" name="_template" value="table" />
                 <input type="hidden" name="_autoresponse" value="Thank you for your application to Evolve8 Studio! We will get back to you within 24hrs after submission." />
                 <div>
