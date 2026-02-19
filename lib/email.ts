@@ -13,7 +13,7 @@ export const formatApplicationEmail = (formData: {
   equityOpenness: string;
 }) => {
   return {
-    to: 'evolve8studio@gmail.com',
+    to: 'hello@evolve8studio.in',
     subject: `New Application: ${formData.founderName}`,
     text: `
 New Application Submission from Evolve8 Website

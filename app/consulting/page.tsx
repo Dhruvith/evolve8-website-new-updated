@@ -90,10 +90,10 @@ export default function ConsultingPage() {
 
                 {/* 
                   Form submission handled by formsubmit.co - No API keys or backend required!
-                  Form will automatically email evolve8studio@gmail.com and redirect back with success message
+                  Form will automatically email hello@evolve8studio.in and redirect back with success message
                 */}
                 <form
-                  action="https://formsubmit.co/evolve8studio@gmail.com"
+                  action="https://formsubmit.co/hello@evolve8studio.in"
                   method="POST"
                   onSubmit={handleSubmit}
                   className="space-y-6"

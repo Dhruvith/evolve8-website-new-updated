@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 // Production-grade API route for form submissions
-// This sends emails directly to evolve8studio@gmail.com
+// This sends emails directly to hello@evolve8studio.in
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
@@ -74,7 +74,7 @@ Submitted: ${new Date().toLocaleString()}
         console.log('Attempting to send email via Resend...');
         const { data, error } = await resend.emails.send({
           from: 'Evolve8 Website <onboarding@resend.dev>', // Change this after domain verification
-          to: ['evolve8studio@gmail.com'],
+          to: ['hello@evolve8studio.in'],
           subject: `New Application: ${formData.founderName}`,
           text: emailBody,
           html: `
@@ -111,10 +111,10 @@ Submitted: ${new Date().toLocaleString()}
 
         console.log('✅ Email sent successfully via Resend!');
         console.log('Email ID:', data?.id);
-        console.log('Recipient: evolve8studio@gmail.com\n');
+        console.log('Recipient: hello@evolve8studio.in\n');
 
         return NextResponse.json(
-          { success: true, message: 'Application submitted successfully. Email sent to evolve8studio@gmail.com' },
+          { success: true, message: 'Application submitted successfully. Email sent to hello@evolve8studio.in' },
           { status: 200 }
         );
       } catch (resendError: any) {

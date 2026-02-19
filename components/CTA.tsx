@@ -34,10 +34,10 @@ export const CTA = () => {
             Ready to Evolve Your Digital Presence?
           </h2>
           <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto">
-            Let's discuss how we can transform your ideas into bold digital realities. 
+            Let's discuss how we can transform your ideas into bold digital realities.
             Get a free consultation and proposal today.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
             <Button
               onClick={handleGetStarted}
@@ -48,12 +48,12 @@ export const CTA = () => {
               <ArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" size={20} />
             </Button>
             <Button
-              href="mailto:evolve8studio@gmail.com"
+              href="mailto:hello@evolve8studio.in"
               variant="outline"
               className="border-purple text-purple hover:bg-purple hover:text-white"
             >
               <Mail className="inline-block mr-2" size={20} />
-              evolve8studio@gmail.com
+              hello@evolve8studio.in
             </Button>
           </div>
 

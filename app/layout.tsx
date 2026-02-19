@@ -22,7 +22,7 @@ export default function RootLayout({
       <body>
         {/* Google tag (gtag.js) */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-MPPFBBDQFZ"
+          src="https://www.googletagmanager.com/gtag/js?id=G-1BYR2PJD4N"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -30,7 +30,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-MPPFBBDQFZ');
+            gtag('config', 'G-1BYR2PJD4N');
           `}
         </Script>
         {/* Tawk.to Live Chat */}

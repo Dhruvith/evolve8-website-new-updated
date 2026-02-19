@@ -1028,7 +1028,7 @@ export default function Elev8StartupsPage() {
                     className="max-w-4xl mx-auto bg-darkPurple/60 border border-purple/30 rounded-3xl p-6 md:p-10 backdrop-blur-md"
                   >
                     <form
-                      action="https://formsubmit.co/evolve8studio@gmail.com"
+                      action="https://formsubmit.co/startups@evolve8studio.in"
                       method="POST"
                       onSubmit={handleSubmit}
                       className="space-y-12 text-left"
